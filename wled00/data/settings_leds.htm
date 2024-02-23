@@ -209,8 +209,8 @@
 				gId("dig"+n+"f").style.display = ((t >= 16 && t < 32) || (t >= 50 && t < 64)) ? "inline":"none";  // hide refresh
 				gId("dig"+n+"a").style.display = (isRGBW && t != 40) ? "inline":"none";  // auto calculate white
 				gId("dig"+n+"l").style.display = (t > 48 && t < 64) ? "inline":"none";  // bus clock speed
-				gId("rev"+n).innerHTML = (t >= 40 && t < 48) ? "Inverted output":"Reversed (rotated 180°)";  // change reverse text for analog
-				gId("psd"+n).innerHTML = (t >= 40 && t < 48) ? "Index:":"Start:";    // change analog start description
+				gId("rev"+n).innerHTML = (t >= 40 && t < 48) ? "Inverted output":"反转(旋转180°)";  // change reverse text for analog
+				gId("psd"+n).innerHTML = (t >= 40 && t < 48) ? "Index:":"开始:";    // change analog start description
 			});
 			// display global white channel overrides
 			gId("wc").style.display = (gRGBW) ? 'inline':'none';
@@ -306,7 +306,7 @@
 			{
 				s += is12V ? "12V ": isWS2815 ? "WS2815 12V " : "5V ";
 				s += val;
-				s += "A supply connected to LEDs";
+				s += "A 直流开关电源";
 			}
 			var val2 = Math.ceil((100 + sPC * laprev)/1500)/2;
 			val2 = (val2 > 5) ? Math.ceil(val2) : val2;
@@ -364,7 +364,7 @@ ${i+1}:
 <option value="82">Art-Net RGB (network)</option>
 <option value="88">DDP RGBW (network)</option>
 </select><br>
-<div id="co${i}" style="display:inline">Color Order:
+<div id="co${i}" style="display:inline">颜色顺序:
 <select name="CO${i}">
 <option value="0">GRB</option>
 <option value="1">RGB</option>
@@ -377,15 +377,15 @@ ${i+1}:
 <div id="dig${i}l" style="display:none">Clock: <select name="SP${i}"><option value="0">Slowest</option><option value="1">Slow</option><option value="2">Normal</option><option value="3">Fast</option><option value="4">Fastest</option></select></div>
 <div>
 <span id="psd${i}">Start:</span> <input type="number" name="LS${i}" id="ls${i}" class="l starts" min="0" max="8191" value="${lastEnd(i)}" oninput="startsDirty[${i}]=true;UI();" required />&nbsp;
-<div id="dig${i}c" style="display:inline">Length: <input type="number" name="LC${i}" class="l" min="1" max="${maxPB}" value="1" required oninput="UI()" /></div><br>
+<div id="dig${i}c" style="display:inline">长度: <input type="number" name="LC${i}" class="l" min="1" max="${maxPB}" value="1" required oninput="UI()" /></div><br>
 </div>
 <span id="p0d${i}">GPIO:</span><input type="number" name="L0${i}" required class="s" onchange="UI();pinUpd(this);"/>
 <span id="p1d${i}"></span><input type="number" name="L1${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p2d${i}"></span><input type="number" name="L2${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p3d${i}"></span><input type="number" name="L3${i}" class="s" onchange="UI();pinUpd(this);"/>
 <span id="p4d${i}"></span><input type="number" name="L4${i}" class="s" onchange="UI();pinUpd(this);"/>
-<div id="dig${i}r" style="display:inline"><br><span id="rev${i}">Reversed</span>: <input type="checkbox" name="CV${i}"></div>
-<div id="dig${i}s" style="display:inline"><br>Skip first LEDs: <input type="number" name="SL${i}" min="0" max="255" value="0" oninput="UI()"></div>
+<div id="dig${i}r" style="display:inline"><br><span id="rev${i}">反转</span>: <input type="checkbox" name="CV${i}"></div>
+<div id="dig${i}s" style="display:inline"><br>跳过前几个LED: <input type="number" name="SL${i}" min="0" max="255" value="0" oninput="UI()"></div>
 <div id="dig${i}f" style="display:inline"><br>Off Refresh: <input id="rf${i}" type="checkbox" name="RF${i}"></div>
 <div id="dig${i}a" style="display:inline"><br>Auto-calculate white channel from RGB:<br><select name="AW${i}"><option value=0>None</option><option value=1>Brighter</option><option value=2>Accurate</option><option value=3>Dual</option><option value=4>Max</option></select>&nbsp;</div>
 </div>`;
@@ -453,16 +453,16 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 			var c = gId("btns").innerHTML;
 			var bt = "BT" + String.fromCharCode((i<10?48:55)+i);
 			var be = "BE" + String.fromCharCode((i<10?48:55)+i);
-			c += `Button ${i} GPIO: <input type="number" name="${bt}" onchange="UI()" class="xs" value="${p}">`;
+			c += `按钮 ${i} GPIO: <input type="number" name="${bt}" onchange="UI()" class="xs" value="${p}">`;
 			c += `&nbsp;<select name="${be}">`
-			c += `<option value="0" ${t==0?"selected":""}>Disabled</option>`;
-			c += `<option value="2" ${t==2?"selected":""}>Pushbutton</option>`;
-			c += `<option value="3" ${t==3?"selected":""}>Push inverted</option>`;
-			c += `<option value="4" ${t==4?"selected":""}>Switch</option>`;
-			c += `<option value="5" ${t==5?"selected":""}>PIR sensor</option>`;
-			c += `<option value="6" ${t==6?"selected":""}>Touch</option>`;
-			c += `<option value="7" ${t==7?"selected":""}>Analog</option>`;
-			c += `<option value="8" ${t==8?"selected":""}>Analog inverted</option>`;
+			c += `<option value="0" ${t==0?"selected":""}>禁用</option>`;
+			c += `<option value="2" ${t==2?"selected":""}>按钮</option>`;
+			c += `<option value="3" ${t==3?"selected":""}>反向按钮</option>`;
+			c += `<option value="4" ${t==4?"selected":""}>开关</option>`;
+			c += `<option value="5" ${t==5?"selected":""}>被动红外传感器</option>`;
+			c += `<option value="6" ${t==6?"selected":""}>触摸</option>`;
+			c += `<option value="7" ${t==7?"selected":""}>模拟</option>`;
+			c += `<option value="8" ${t==8?"selected":""}>反向模拟</option>`;
 			c += `</select>`;
 			c += `<span style="cursor: pointer;" onclick="off('${bt}')">&nbsp;&#x2715;</span><br>`;
 			gId("btns").innerHTML = c;
@@ -689,54 +689,54 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
 		<button type="button" onclick="B()">Back</button><button type="submit">Save</button><hr>
 		</div>
-		<h2>LED &amp; Hardware setup</h2>
-		Total LEDs: <span id="lc">?</span> <span id="pc"></span><br>
-		<i>Recommended power supply for brightest white:</i><br>
+		<h2>LED &amp; 硬件</h2>
+		LED总数: <span id="lc">?</span> <span id="pc"></span><br>
+		<i>白色最高亮度下推荐电源:</i><br>
 		<b><span id="psu">?</span></b><br>
 		<span id="psu2"><br></span>
 		<br>
-		Enable automatic brightness limiter: <input type="checkbox" name="ABen" onchange="enABL()" id="able"><br>
+		启用自动亮度限制: <input type="checkbox" name="ABen" onchange="enABL()" id="able"><br>
 		<div id="abl">
-			Maximum Current: <input name="MA" type="number" class="l" min="250" max="65000" oninput="UI()" required> mA<br>
+			最大电流: <input name="MA" type="number" class="l" min="250" max="65000" oninput="UI()" required> mA<br>
 			<div id="ampwarning" class="warn" style="display: none;">
-				&#9888; Your power supply provides high current.<br>
-				To improve the safety of your setup,<br>
-				please use thick cables,<br>
-				multiple power injection points and a fuse!<br>
+				&#9888; 您的电源输出电流较高.<br>
+				为了保证整体的电气安全,<br>
+				请使用高载流线缆,<br>
+				多个供电点以及保险丝.<br>
 			</div>
-			<i>Automatically limits brightness to stay close to the limit.<br>
-			Keep at &lt;1A if powering LEDs directly from the ESP 5V pin!<br>
-			If you are using an external power supply, enter its rating.<br>
-			(Current estimated usage: <span class="pow">unknown</span>)</i><br><br>
-			LED voltage (Max. current for a single LED):<br>
+			<i>自动限制亮度以保持不超过输出极限.<br>
+			保持在&lt;1A如果使用ESP自带的5V输出!<br>
+			如果您使用外部电源,请输入其额定值.<br>
+			(当前预估电流: <span class="pow">未知</span>)</i><br><br>
+			LED电压 (最大. 电流对应单个LED):<br>
 			<select name="LAsel" onchange="enLA()">
-				<option value="55" selected>5V default (55mA)</option>
-				<option value="35">5V efficient (35mA)</option>
+				<option value="55" selected>5V 默认 (55mA)</option>
+				<option value="35">5V 节能 (35mA)</option>
 				<option value="30">12V (30mA)</option>
 				<option value="255">WS2815 (12mA)</option>
-				<option value="50">Custom</option>
+				<option value="50">自定义</option>
 			</select><br>
-			<span id="LAdis" style="display: none;">Custom max. current per LED: <input name="LA" type="number" min="0" max="255" id="la" oninput="UI()" required> mA<br></span>
-			<i>Keep at default if you are unsure about your type of LEDs.</i><br>
+			<span id="LAdis" style="display: none;">自定义最大单个LED电流: <input name="LA" type="number" min="0" max="255" id="la" oninput="UI()" required> mA<br></span>
+			<i>如果不清楚使用的LED请保持默认.</i><br>
 		</div>
-		<h3>Hardware setup</h3>
-		<div id="mLC">LED outputs:</div>
+		<h3>硬件设置</h3>
+		<div id="mLC">LED输出:</div>
 		<hr class="sml">
 		<button type="button" id="+" onclick="addLEDs(1,false)">+</button>
 		<button type="button" id="-" onclick="addLEDs(-1,false)">-</button><br>
-		LED Memory Usage: <span id="m0">0</span> / <span id="m1">?</span> B<br>
+		LED内存使用量: <span id="m0">0</span> / <span id="m1">?</span> B<br>
 		<div id="dbar" style="display:inline-block; width: 100px; height: 10px; border-radius: 20px;"></div><br>
 		<div id="ledwarning" class="warn" style="display: none;">
-			&#9888; You might run into stability or lag issues.<br>
-			Use less than <span id="wreason">800 LEDs per output</span> for the best experience!<br>
+			&#9888; 可能遇到稳定性和延迟问题.<br>
+			使用少于<span id="wreason">800个LED对应每个输出</span>来取得更好的体验!<br>
 		</div>
 		<hr class="sml">
-		Make a segment for each output: <input type="checkbox" name="MS"><br>
+		为每个输出生成分块: <input type="checkbox" name="MS"><br>
 		Custom bus start indices: <input type="checkbox" onchange="tglSi(this.checked)" id="si"><br>
-		Use global LED buffer: <input type="checkbox" name="LD" onchange="UI()"><br>
+		使用全局LED缓冲: <input type="checkbox" name="LD" onchange="UI()"><br>
 		<hr class="sml">
 		<div id="color_order_mapping">
-			Color Order Override:
+			颜色顺序覆写:
 			<div id="com_entries"></div>
 			<hr class="sml">
 			<button type="button" id="com_add" onclick="addCOM()">+</button>
@@ -744,8 +744,8 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 		</div>
 		<hr class="sml">
 		<div id="btns"></div>
-		Disable internal pull-up/down: <input type="checkbox" name="IP"><br>
-		Touch threshold: <input type="number" class="s" min="0" max="100" name="TT" required><br>
+		禁用内部上下拉: <input type="checkbox" name="IP"><br>
+		触摸阈值: <input type="number" class="s" min="0" max="100" name="TT" required><br>
 		IR GPIO: <input type="number" min="-1" max="48" name="IR" onchange="UI()" class="xs"><select name="IT" onchange="UI()">
 		<option value=0>Remote disabled</option>
 		<option value=1>24-key RGB</option>
@@ -757,65 +757,65 @@ Length: <input type="number" name="XC${i}" id="xc${i}" class="l" min="1" max="65
 		<option value=7>9-key red</option>
 		<option value=8>JSON remote</option>
 		</select><span style="cursor: pointer;" onclick="off('IR')">&nbsp;&#x2715;</span><br>
-		Apply IR change to main segment only: <input type="checkbox" name="MSO"><br>
-		<div id="json" style="display:none;">JSON file: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/ir.json')">Upload</button><br></div>
+		仅将 IR 应用于主要分块: <input type="checkbox" name="MSO"><br>
+		<div id="json" style="display:none;">JSON file: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/ir.json')">上传</button><br></div>
 		<a href="https://kno.wled.ge/interfaces/infrared/" target="_blank">IR info</a><br>
 		Relay GPIO: <input type="number" min="-1" max="48" name="RL" onchange="UI()" class="xs"> Invert <input type="checkbox" name="RM"><span style="cursor: pointer;" onclick="off('RL')">&nbsp;&#x2715;</span><br>
 		<hr class="sml">
-		<h3>Defaults</h3>
-		Turn LEDs on after power up/reset: <input type="checkbox" name="BO"><br>
-		Default brightness: <input name="CA" type="number" class="m" min="0" max="255" required> (0-255)<br><br>
-		Apply preset <input name="BP" type="number" class="m" min="0" max="250" required> at boot (0 uses defaults)
+		<h3>默认</h3>
+		重启/启动后打开LED: <input type="checkbox" name="BO"><br>
+		默认亮度: <input name="CA" type="number" class="m" min="0" max="255" required> (0-255)<br><br>
+		启用第<input name="BP" type="number" class="m" min="0" max="250" required>预设在启动时(0 使用默认)
 		<br><br>
-		Use Gamma correction for color: <input type="checkbox" name="GC"> (strongly recommended)<br>
-		Use Gamma correction for brightness: <input type="checkbox" name="GB"> (not recommended)<br>
-		Use Gamma value: <input name="GV" type="number" class="m" placeholder="2.8" min="1" max="3" step="0.1" required><br><br>
-		Brightness factor: <input name="BF" type="number" class="m" min="1" max="255" required> %
-		<h3>Transitions</h3>
-		Crossfade: <input type="checkbox" name="TF"><br>
-		Effect blending: <input type="checkbox" name="EB"><br>
-		Transition Time: <input name="TD" type="number" class="xl" min="0" max="65500"> ms<br>
-		Enable Palette transitions: <input type="checkbox" name="PF"><br>
-		<i>Random Cycle</i> Palette Time: <input name="TP" type="number" class="m" min="1" max="255"> s<br>
-		<h3>Timed light</h3>
-		Default Duration: <input name="TL" type="number" class="m" min="1" max="255" required> min<br>
-		Default Target brightness: <input name="TB" type="number" class="m" min="0" max="255" required><br>
-		Mode:
+		使用Gamma校正颜色: <input type="checkbox" name="GC"> (强烈推荐)<br>
+		使用Gamma校正亮度: <input type="checkbox" name="GB"> (不推荐)<br>
+		Gamma值: <input name="GV" type="number" class="m" placeholder="2.8" min="1" max="3" step="0.1" required><br><br>
+		亮度系数: <input name="BF" type="number" class="m" min="1" max="255" required> %
+		<h3>过渡</h3>
+		交叉淡化: <input type="checkbox" name="TF"><br>
+		效果混合: <input type="checkbox" name="EB"><br>
+		过渡时间: <input name="TD" type="number" class="xl" min="0" max="65500"> ms<br>
+		启用调色板转换: <input type="checkbox" name="PF"><br>
+		<i>随机循环</i>调色板时间: <input name="TP" type="number" class="m" min="1" max="255"> s<br>
+		<h3>定时</h3>
+		默认时间: <input name="TL" type="number" class="m" min="1" max="255" required> min<br>
+		默认目标亮度: <input name="TB" type="number" class="m" min="0" max="255" required><br>
+		模式:
 		<select name="TW">
-			<option value="0">Wait and set</option>
-			<option value="1">Fade</option>
-			<option value="2">Fade Color</option>
-			<option value="3">Sunrise</option>
+			<option value="0">等待并设置</option>
+			<option value="1">渐变</option>
+			<option value="2">颜色渐变</option>
+			<option value="3">日出</option>
 		</select>
-		<h3>White management</h3>
-		White Balance correction: <input type="checkbox" name="CCT"><br>
+		<h3>白色标定</h3>
+		白平衡校正: <input type="checkbox" name="CCT"><br>
 		<div id="wc">
-			Global override for Auto-calculate white:<br>
+			自动白色全局覆盖:<br>
 			<select name="AW">
-				<option value=255>Disabled</option>
-				<option value=0>None</option>
-				<option value=1>Brighter</option>
-				<option value=2>Accurate</option>
+				<option value=255>关闭</option>
+				<option value=0>无</option>
+				<option value=1>更亮</option>
+				<option value=2>精准</option>
 				<option value=3>Dual</option>
 				<option value=4>Max</option>
 			</select>
 			<br>
-			Calculate CCT from RGB: <input type="checkbox" name="CR"><br>
-			CCT additive blending: <input type="number" class="s" min="0" max="100" name="CB" required> %
+			由RGB计算CCT: <input type="checkbox" name="CR"><br>
+			CCT混合增加: <input type="number" class="s" min="0" max="100" name="CB" required> %
 		</div>
-		<h3>Advanced</h3>
-		Palette blending:
+		<h3>高级</h3>
+		调色板混合:
 		<select name="PB">
-			<option value="0">Linear (wrap if moving)</option>
-			<option value="1">Linear (always wrap)</option>
-			<option value="2">Linear (never wrap)</option>
-			<option value="3">None (not recommended)</option>
+			<option value="0">线性(移动后wrap)</option>
+			<option value="1">线性(总是wrap)</option>
+			<option value="2">线性(从不wrap)</option>
+			<option value="3">无(不推荐)</option>
 		</select><br>
-		Target refresh rate: <input type="number" class="s" min="1" max="120" name="FR" required> FPS
+		目标刷新率: <input type="number" class="s" min="1" max="120" name="FR" required> FPS
 		<hr class="sml">
-		<div id="cfg">Config template: <input type="file" name="data2" accept=".json"><button type="button" class="sml" onclick="loadCfg(d.Sf.data2)">Apply</button><br></div>
+		<div id="cfg">配置模板: <input type="file" name="data2" accept=".json"><button type="button" class="sml" onclick="loadCfg(d.Sf.data2)">Apply</button><br></div>
 		<hr>
-		<button type="button" onclick="B()">Back</button><button type="submit">Save</button>
+		<button type="button" onclick="B()">返回</button><button type="submit">保存</button>
 	</form>
 	<div id="toast"></div>
 </body>

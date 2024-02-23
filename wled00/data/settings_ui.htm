@@ -255,18 +255,18 @@
 		<div class="toprow">
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
 		<button type="button" onclick="B()">返回</button><button type="button" onclick="Save()">保存</button><br>
-		<span id="lssuc" style="color:green; display:none">&#10004; 已保存本地 UI 设置!</span>
-		<span id="lserr" style="color:red; display:none">&#9888; 无法访问本地存储。 确保您的浏览器中已启用它.</span><hr>
+		<span id="lssuc" style="color:green; display:none">&#10004; 已保存本地UI设置!</span>
+		<span id="lserr" style="color:red; display:none">&#9888; 无法访问本地存储,确保您的浏览器中已启用它.</span><hr>
 		</div>
 		<h2>Web Setup</h2>
 		服务器描述: <input type="text" name="DS" maxlength="32"><br>
-		同步按钮将会同时开关发送和接收: <input type="checkbox" name="ST"><br>
+		同步按钮同时控制发送和接收: <input type="checkbox" name="ST"><br>
 		<div id="NoSimple" class="hide">
 			<i class="warn">此固件版本不包括简化UI支持.<br></i>
 		</div>
 		<div id="Simple">启用简化UI: <input type="checkbox" name="SU"><br></div>
-		<i>以下UI自定义设置对于WLED设备和此浏览器来说都是唯一的.<br>
-		如果使用不同的浏览器、设备或WLED IP地址，将需要重新设置它们.<br>
+		<i>以下UI自定义设置对WLED设备和浏览器来说都是唯一的.<br>
+		如果使用不同的浏览器、设备或WLED,需要重新设置.<br>
 		刷新主UI以应用更改.</i><br>
 		
 		<div id="gen">加载配置...</div>

@@ -152,13 +152,13 @@
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
 		<button type="button" onclick="B()">返回</button><button type="submit">保存并连接</button><hr>
 		</div>
-		<h2>WiFi 设置</h2>
+		<h2>WiFi设置</h2>
 		<h3>连接到已有网络</h3>
 		<button type="button" id="scan" onclick="N()">Scan</button><br>
-		网络名称 (SSID, 留空则不连接):<br>
+		网络名称(SSID,留空则不连接):<br>
 		<input type="text" id="CS" name="CS" maxlength="32"><br>
 		网络密码: <br> <input type="password" name="CP" maxlength="63"><br>
-		静态 IP ( 留为 0.0.0.0 如果使用 DHCP):<br>
+		静态IP(留为 0.0.0.0 如果使用 DHCP):<br>
 		<input name="I0" type="number" class="s" min="0" max="255" required> .
 		<input name="I1" type="number" class="s" min="0" max="255" required> .
 		<input name="I2" type="number" class="s" min="0" max="255" required> .
@@ -173,31 +173,31 @@
 		<input name="S1" type="number" class="s" min="0" max="255" required> .
 		<input name="S2" type="number" class="s" min="0" max="255" required> .
 		<input name="S3" type="number" class="s" min="0" max="255" required><br>
-		mDNS 地址 (留空如果没有 mDNS):<br>
+		mDNS地址(留空如果没有mDNS):<br>
 		http:// <input type="text" name="CM" maxlength="32"> .local<br>
 		客户端 IP: <span class="sip"> 未连接 </span> <br>
-		<h3>配置AP</h3>
-		AP SSID (留空如果不使用 AP):<br> <input type="text" name="AS" maxlength="32"><br>
-		隐藏 AP 名字: <input type="checkbox" name="AH"><br>
-		AP 密码 (留空使用开放 AP):<br> <input type="password" name="AP" maxlength="63" pattern="(.{8,63})|()" title="Empty or min. 8 characters"><br>
-		AP WiFi 信道: <input name="AC" type="number" class="xs" min="1" max="13" required><br>
+		<h3>AP配置</h3>
+		AP SSID(留空如果不使用AP): <br> <input type="text" name="AS" maxlength="32"><br>
+		隐藏AP名字: <input type="checkbox" name="AH"><br>
+		AP 密码(留空使用开放AP): <br> <input type="password" name="AP" maxlength="63" pattern="(.{8,63})|()" title="Empty or min. 8 characters"><br>
+		AP WiFi信道: <input name="AC" type="number" class="xs" min="1" max="13" required><br>
 		AP 开启选项:
 		<select name="AB">
 		<option value="0">启动后没有连接到网络</option>
 		<option value="1">网络连接断开</option>
 		<option value="2">总是</option>
-		<option value="3">从不 (不推荐)</option></select><br>
+		<option value="3">从不(不推荐)</option></select><br>
 		AP IP: <span class="sip"> 未启动 </span><br>
 		<h3>实验性</h3>
-		强制 802.11g 模式 (仅限ESP8266): <input type="checkbox" name="FG"><br>
-		关闭 WiFi 休眠: <input type="checkbox" name="WS"><br>
+		强制802.11g模式(仅限ESP8266): <input type="checkbox" name="FG"><br>
+		关闭WiFi休眠: <input type="checkbox" name="WS"><br>
 		<i>可以修复连接问题.<br>
-		WiFi正常情况下请勿开启, 会增加功耗.</i>
+		WiFi正常情况下请勿开启,会增加功耗.</i>
 
 		<div id="remd">
 			<h3>远程无线</h3>
 			<i>监听ESP-NOW事件<br>
-			不使用远程无线请勿开启, 会增加功耗.<br></i>
+			不使用远程无线请勿开启,会增加功耗.<br></i>
 		
 			开启远程无线: <input type="checkbox" name="RE"><br>
 			硬件 MAC: <input type="text" name="RMAC"><br>

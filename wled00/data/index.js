@@ -420,13 +420,13 @@ function presetError(empty)
 	if (empty)
 		cn += `没有预设!`;
 	else
-		cn += `抱歉，加载预设失败!`;
+		cn += `加载预设失败!`;
 
 	if (hasBackup) {
 		cn += `<br><br>`;
 		if (empty)
-			cn += `但是，有先前安装的备份预设数据可用.<br>
-			(保存预设将隐藏该预设并覆盖备份)`;
+			cn += `有先前设置的预设备份数据可用.<br>
+			(保存行预设将覆盖备份)`;
 		else
 			cn += `这是最后一个已知良好状态的备份:`;
 		cn += `<textarea id="bck"></textarea><br>
@@ -776,9 +776,9 @@ function populateSegments(s)
 					`<input type="text" class="ptxt" id="seg${i}t" autocomplete="off" maxlength=${li.arch=="esp8266"?32:64} value="${inst.n?inst.n:""}" placeholder="Enter name..."/>`+
 					`<table class="infot segt">`+
 					`<tr>`+
-						`<td>${isMSeg?'Start X':'Start LED'}</td>`+
-						`<td>${isMSeg?(cfg.comp.seglen?"Width":"Stop X"):(cfg.comp.seglen?"LED count":"Stop LED")}</td>`+
-						`<td>${isMSeg?'':'Offset'}</td>`+
+						`<td>${isMSeg?'Start X':'开始LED'}</td>`+
+						`<td>${isMSeg?(cfg.comp.seglen?"Width":"Stop X"):(cfg.comp.seglen?"LED count":"结束LED")}</td>`+
+						`<td>${isMSeg?'':'偏移'}</td>`+
 					`</tr>`+
 					`<tr>`+
 						`<td><input class="segn" id="seg${i}s" type="number" min="0" max="${(isMSeg?mw:ledCount)-1}" value="${staX}" oninput="updateLen(${i})" onkeydown="segEnter(${i})"></td>`+
@@ -792,8 +792,8 @@ function populateSegments(s)
 						'<td style="text-align:revert;">'+miYck+'<br>'+rvYck+'</td>'+
 					'</tr>' : '') +
 					`<tr>`+
-						`<td>Grouping</td>`+
-						`<td>Spacing</td>`+
+						`<td>分组</td>`+
+						`<td>间隔</td>`+
 						`<td></td>`+
 					`</tr>`+
 					`<tr>`+
@@ -807,7 +807,7 @@ function populateSegments(s)
 					(isMSeg&&stoY-staY>1&&stoX-staX>1 ? map2D : '') +
 					(s.AudioReactive && s.AudioReactive.on ? "" : sndSim) +
 					`<label class="check revchkl" id="seg${i}lbtm">`+
-						(isMSeg?'Transpose':'Mirror effect') + (isMSeg ?
+						(isMSeg?'Transpose':'镜像效果') + (isMSeg ?
 						'<input type="checkbox" id="seg'+i+'tp" onchange="setTp('+i+')" '+(inst.tp?"checked":"")+'>':
 						'<input type="checkbox" id="seg'+i+'mi" onchange="setMi('+i+')" '+(inst.mi?"checked":"")+'>') +
 						`<span class="checkmark"></span>`+
@@ -1491,8 +1491,8 @@ function setEffectParameters(idx)
 		// if (not controlDefined and for AC speed or intensity and for SR all sliders) or slider has a value
 		if ((!controlDefined && i < ((idx<128)?2:nSliders)) || (slOnOff.length>i && slOnOff[i] != "")) {
 			if (slOnOff.length>i && slOnOff[i]!="!") label.innerHTML = slOnOff[i];
-			else if (i==0)                           label.innerHTML = "Effect speed";
-			else if (i==1)                           label.innerHTML = "Effect intensity";
+			else if (i==0)                           label.innerHTML = "效果速度";
+			else if (i==1)                           label.innerHTML = "效果强度";
 			else                                     label.innerHTML = "Custom" + (i-1);
 			slider.classList.remove('hide');
 		} else {
@@ -1572,10 +1572,10 @@ function setEffectParameters(idx)
 			paOnOff[0] = paOnOff[0].substring(0,dPos);
 		}
 		if (paOnOff.length>0 && paOnOff[0] != "!") pall.innerHTML = paOnOff[0];
-		else                                       pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Color palette';
+		else                                       pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i>调色板';
 	} else {
 		// disable palette list
-		pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i> Color palette not used';
+		pall.innerHTML = '<i class="icons sel-icon" onclick="tglHex()">&#xe2b3;</i>未使用调色板';
 		palw.style.display = "none";
 	}
 	// not all color selectors shown, hide palettes created from color selectors
@@ -1687,7 +1687,7 @@ function toggleNl()
 function toggleSync()
 {
 	syncSend = !syncSend;
-	if (syncSend) showToast('网络中的其他LED将和此LED同步');
+	if (syncSend) showToast('网络中的其他LED将和此LED.');
 	else showToast('网络中的其他LED不再和此LED同步.');
 	var obj = {"udpn": {"send": syncSend}};
 	if (syncTglRecv) obj.udpn.recv = syncSend;
@@ -1756,11 +1756,11 @@ function makeSeg()
 	});
 	var cn = `<div class="seg lstI expanded">`+
 		`<div class="segin">`+
-			`<input type="text" id="seg${lu}t" autocomplete="off" maxlength=32 value="" placeholder="New segment ${lu}"/>`+
+			`<input type="text" id="seg${lu}t" autocomplete="off" maxlength=32 value="" placeholder="新分块 ${lu}"/>`+
 			`<table class="segt">`+
 				`<tr>`+
-					`<td width="38%">${isM?'Start X':'Start LED'}</td>`+
-					`<td width="38%">${isM?(cfg.comp.seglen?"Width":"Stop X"):(cfg.comp.seglen?"LED count":"Stop LED")}</td>`+
+					`<td width="38%">${isM?'Start X':'开始LED'}</td>`+
+					`<td width="38%">${isM?(cfg.comp.seglen?"Width":"Stop X"):(cfg.comp.seglen?"LED count":"结束LED")}</td>`+
 				`</tr>`+
 				`<tr>`+
 					`<td><input class="segn" id="seg${lu}s" type="number" min="0" max="${isM?mw-1:ledCount-1}" value="${ns}" oninput="updateLen(${lu})" onkeydown="segEnter(${lu})"></td>`+
@@ -1773,8 +1773,8 @@ function makeSeg()
 					`<td><input class="segn" id="seg${lu}eY" type="number" min="0" max="${mh}" value="${isM?mh:1}" oninput="updateLen(${lu})" onkeydown="segEnter(${lu})"></td>`+
 				`</tr>`+
 			`</table>`+
-			`<div class="h" id="seg${lu}len">${ledCount - ns} LEDs</div>`+
-			`<div class="c"><button class="btn btn-p" onclick="resetUtil()">Cancel</button></div>`+
+			`<div class="h" id="seg${lu}len">${ledCount - ns} 个LED</div>`+
+			`<div class="c"><button class="btn btn-p" onclick="resetUtil()">取消</button></div>`+
 		`</div>`+
 	`</div>`;
 	gId('segutil').innerHTML = cn;
@@ -1784,7 +1784,7 @@ function resetUtil(off=false)
 {
 	gId('segutil').innerHTML = `<div class="seg btn btn-s${off?' off':''}" style="padding:0;">`
 	+ '<label class="check schkl"><input type="checkbox" id="selall" onchange="selSegAll(this)"><span class="checkmark"></span></label>'
-	+ `<div class="segname" ${off?'':'onclick="makeSeg()"'}><i class="icons btn-icon">&#xe18a;</i>Add segment</div>`
+	+ `<div class="segname" ${off?'':'onclick="makeSeg()"'}><i class="icons btn-icon">&#xe18a;</i>添加分块</div>`
 	+ '<div class="pop hide" onclick="event.stopPropagation();">'
 	+ `<i class="icons g-icon" onclick="this.nextElementSibling.classList.toggle('hide');">&#xE34B;</i>`
 	+ '<div class="pop-c hide"><span style="color:var(--c-f);" onclick="selGrp(0);">&#x278A;</span><span style="color:var(--c-r);" onclick="selGrp(1);">&#x278B;</span><span style="color:var(--c-g);" onclick="selGrp(2);">&#x278C;</span><span style="color:var(--c-l);" onclick="selGrp(3);">&#x278D;</span></div>'
@@ -1913,21 +1913,21 @@ ${makePlSel(plJson[i].end?plJson[i].end:0, true)}
 		content =
 `<label class="check revchkl">
 	<span class="lstIname">
-	Include brightness
+	包括亮度
 	</span>
 	<input type="checkbox" id="p${i}ibtgl" checked>
 	<span class="checkmark"></span>
 </label>
 <label class="check revchkl">
 	<span class="lstIname">
-	Save segment bounds
+	保存分块边界
 	</span>
 	<input type="checkbox" id="p${i}sbtgl" checked>
 	<span class="checkmark"></span>
 </label>
 <label class="check revchkl">
 	<span class="lstIname">
-	Checked segments only
+	仅检查分块
 	</span>
 	<input type="checkbox" id="p${i}sbchk">
 	<span class="checkmark"></span>
@@ -1940,12 +1940,12 @@ ${makePlSel(plJson[i].end?plJson[i].end:0, true)}
 	}
 
 	return `<input type="text" class="ptxt ${i==0?'show':''}" id="p${i}txt" autocomplete="off" maxlength=32 value="${(i>0)?pName(i):""}" placeholder="Enter name..."/>
-<div class="c">Quick load label: <input type="text" class="stxt" maxlength=2 value="${qlName(i)}" id="p${i}ql" autocomplete="off"/></div>
-<div class="h">(leave empty for no Quick load button)</div>
+<div class="c">快速加载标签: <input type="text" class="stxt" maxlength=2 value="${qlName(i)}" id="p${i}ql" autocomplete="off"/></div>
+<div class="h">(留空表示没有快速加载按钮)</div>
 <div ${pl&&i==0?"style='display:none'":""}>
 <label class="check revchkl">
 	<span class="lstIname">
-	${pl?"Show playlist editor":(i>0)?"Overwrite with state":"Use current state"}
+	${pl?"Show playlist editor":(i>0)?"Overwrite with state":"使用当前状态"}
 	</span>
 	<input type="checkbox" id="p${i}cstgl" onchange="tglCs(${i})" ${(i==0||pl)?"checked":""}>
 	<span class="checkmark"></span>
@@ -1953,7 +1953,7 @@ ${makePlSel(plJson[i].end?plJson[i].end:0, true)}
 </div>
 <div class="po2" id="p${i}o2">API command<br><textarea class="apitxt" id="p${i}api"></textarea></div>
 <div class="po1" id="p${i}o1">${content}</div>
-<div class="c m6">Save to ID <input id="p${i}id" type="number" oninput="checkUsed(${i})" max=250 min=1 value=${(i>0)?i:getLowestUnusedP()}></div>
+<div class="c m6">保存到ID <input id="p${i}id" type="number" oninput="checkUsed(${i})" max=250 min=1 value=${(i>0)?i:getLowestUnusedP()}></div>
 <div class="c">
 	<button class="btn btn-p" onclick="saveP(${i},${pl})"><i class="icons btn-icon">&#xe390;</i>Save</button>
 	${(i>0)?'<button class="btn btn-p" id="p'+i+'del" onclick="delP('+i+')"><i class="icons btn-icon">&#xe037;</i>Delete':'<button class="btn btn-p" onclick="resetPUtil()">Cancel'}</button>
@@ -2030,8 +2030,8 @@ function resetPUtil()
 	let p = gId('putil');
 	p.classList.add('staybot');
 	p.classList.remove('pres');
-	p.innerHTML = `<button class="btn btn-s" onclick="makePUtil()" style="float:left;"><i class="icons btn-icon">&#xe18a;</i>Preset</button>`
-	+ `<button class="btn btn-s" onclick="makePlUtil()" style="float:right;"><i class="icons btn-icon">&#xe18a;</i>Playlist</button>`;
+	p.innerHTML = `<button class="btn btn-s" onclick="makePUtil()" style="float:left;"><i class="icons btn-icon">&#xe18a;</i>预设</button>`
+	+ `<button class="btn btn-s" onclick="makePlUtil()" style="float:right;"><i class="icons btn-icon">&#xe18a;</i>播放列表</button>`;
 }
 
 function tglCs(i)
@@ -2329,7 +2329,7 @@ function saveP(i,pl)
 {
 	pI = parseInt(gId(`p${i}id`).value);
 	if (!pI || pI < 1) pI = (i>0) ? i : getLowestUnusedP();
-	if (pI > 250) {alert("Preset ID must be 250 or less."); return;}
+	if (pI > 250) {alert("预设ID必须小于等于250."); return;}
 	pN = gId(`p${i}txt`).value;
 	if (pN == "") pN = (pl?"Playlist ":"Preset ") + pI;
 	var obj = {};
