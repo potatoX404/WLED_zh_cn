@@ -54,24 +54,24 @@
 </head>
 <body>
 
-<div id="cv" class="overlay">Loading WLED UI...</div>
-<noscript><div class="overlay" style="opacity:1;">Sorry, WLED UI needs JavaScript!</div></noscript>
+<div id="cv" class="overlay">加载 WLED UI...</div>
+<noscript><div class="overlay" style="opacity:1;">抱歉, WLED UI 需要 JavaScript!</div></noscript>
 <div id="bg"></div>
 
 <div class="wrapper" id="top">
 	<div class="tab top">
 		<div class="btnwrap">
-			<button id="buttonPower" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">Power</p></button>
-			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">Timer</p></button>
-			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">Sync</p></button>
-			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">Peek</p></button>
-			<button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">Info</p></button>
-			<button id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i><p class="tab-label">Nodes</p></button>
-			<button onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i><p class="tab-label">Config</p></button>
-			<button id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe23d;</i><p class="tab-label">PC Mode</p></button>
+			<button id="buttonPower" onclick="togglePower()" class="tgl"><i class="icons">&#xe08f;</i><p class="tab-label">电源</p></button>
+			<button id="buttonNl" onclick="toggleNl()"><i class="icons">&#xe2a2;</i><p class="tab-label">定时</p></button>
+			<button id="buttonSync" onclick="toggleSync()"><i class="icons">&#xe116;</i><p class="tab-label">同步</p></button>
+			<button id="buttonSr" onclick="toggleLiveview()"><i class="icons">&#xe410;</i><p class="tab-label">预览</p></button>
+			<button id="buttonI" onclick="toggleInfo()"><i class="icons">&#xe066;</i><p class="tab-label">信息</p></button>
+			<button id="buttonNodes" onclick="toggleNodes()"><i class="icons">&#xe22d;</i><p class="tab-label">节点</p></button>
+			<button onclick="window.location.href=getURL('/settings');"><i class="icons">&#xe0a2;</i><p class="tab-label">配置</p></button>
+			<button id="buttonPcm" onclick="togglePcMode(true)"><i class="icons">&#xe23d;</i><p class="tab-label">电脑模式</p></button>
 		</div>
 		<div id="briwrap">
-			<p class="hd">Brightness</p>
+			<p class="hd">亮度</p>
 			<div class="slider" style="padding-right:32px;">
 				<i class="icons slider-icon" onclick="tglTheme()" style="transform: translate(-32px,5px);">&#xe2a6;</i>
 				<div class="sliderwrap il">
@@ -100,7 +100,7 @@
 				<input id="sliderS" class="noslide" oninput="fromS()" onchange="setColor(0)" max="100" min="0" type="range" value="100" step="any">
 				<div class="sliderdisplay" style="background: linear-gradient(90deg, #aaa 0%, #f00)"></div>
 			</div>
-			<span class="tooltiptext">Saturation</span>
+			<span class="tooltiptext">饱和度</span>
 		</div>
 		<div id="vwrap" class="slider">
 			<div class="sliderwrap il">
@@ -123,21 +123,21 @@
 					<input id="sliderR" class="noslide" oninput="fromRgb()" onchange="setColor(0)" max="255" min="0" type="range" value="128" />
 					<div class="sliderdisplay"></div>
 				</div>
-				<span class="tooltiptext">Red channel</span>
+				<span class="tooltiptext">红色通道</span>
 			</div>
 			<div id="gwrap" class="slider">
 				<div class="sliderwrap il">
 					<input id="sliderG" class="noslide" oninput="fromRgb()" onchange="setColor(0)" max="255" min="0" type="range" value="128" />
 					<div class="sliderdisplay"></div>
 				</div>
-				<span class="tooltiptext">Green channel</span>
+				<span class="tooltiptext">绿色通道</span>
 			</div>
 			<div id="bwrap" class="slider">
 				<div class="sliderwrap il">
 					<input id="sliderB" class="noslide" oninput="fromRgb()" onchange="setColor(0)" max="255" min="0" type="range" value="128" />
 					<div class="sliderdisplay"></div>
 				</div>
-				<span class="tooltiptext">Blue channel</span>
+				<span class="tooltiptext">蓝色通道</span>
 			</div>
 		</div>
 		<div id="wwrap" class="slider">
@@ -146,7 +146,7 @@
 				<input id="sliderW" class="noslide" oninput="fromW()" onchange="setColor(0)" max="255" min="0" type="range" value="128" />
 				<div class="sliderdisplay"></div>
 			</div>
-			<span class="tooltiptext">White channel</span>
+			<span class="tooltiptext">白色通道</span>
 		</div>
 		<div id="wbal" class="slider">
 			<!--p class="labels hd">White balance</p-->
@@ -154,7 +154,7 @@
 				<input id="sliderA" class="noslide" onchange="setBalance(this.value)" max="255" min="0" type="range" value="128" />
 				<div class="sliderdisplay"></div>
 			</div>
-			<span class="tooltiptext">White balance</span>
+			<span class="tooltiptext">白平衡</span>
 		</div>
 		<div id="qcs-w">
 			<div class="qcs" onclick="pC('#ff0000');" title="Red" style="background-color:#ff0000;"></div>
@@ -192,7 +192,7 @@
 					<label class="radio schkl" onclick="loadPalettes()"> 
 						<div class="lstIcontent">
 							<span class="lstIname">
-								Loading...
+								加载中...
 							</span>
 						</div>
 					</label>
@@ -219,7 +219,7 @@
 					<label class="radio schkl" onclick="loadFX()"> 
 						<div class="lstIcontent">
 							<span class="lstIname">
-								Loading...
+								加载中...
 							</span>
 						</div>
 					</label>
@@ -317,7 +317,7 @@
 
 	<div id="Segments" class="tabcontent">
 		<div id="segcont">
-			Loading...
+			加载中...
 		</div>
 		<div id="segutil" class="staybot">
 		</div>
@@ -331,14 +331,14 @@
 	<div id="Presets" class="tabcontent">
 		<div id="pql">
 		</div>
-		<p class="labels hd">Presets</p>
+		<p class="labels hd">预设</p>
 		<div class="staytop fnd" id="psFind">
 			<input type="text" placeholder="Search" oninput="search(this,'pcont')" onfocus="search(this,'pcont')" />
 			<i class="icons clear-icon" onclick="clean(this);">&#xe38f;</i>
 			<i class="icons search-icon">&#xe0a1;</i>
 		</div>
 		<div id="pcont" class="list">
-			<span onclick="loadPresets()">Loading...</span>
+			<span onclick="loadPresets()">加载中...</span>
 		</div>
 		<div id="putil" class="staybot">
 		</div>
@@ -346,10 +346,10 @@
 </div>
 
 <div class="tab bot" id="bot">
-	<button class="tablinks" onclick="openTab(0)"><i class="icons">&#xe2b3;</i><p class="tab-label">Colors</p></button>
-	<button class="tablinks" onclick="openTab(1)"><i class="icons">&#xe23d;</i><p class="tab-label">Effects</p></button>
-	<button class="tablinks" onclick="openTab(2)"><i class="icons">&#xe34b;</i><p class="tab-label">Segments</p></button>
-	<button class="tablinks" onclick="openTab(3)"><i class="icons">&#xe04c;</i><p class="tab-label">Presets</p></button>
+	<button class="tablinks" onclick="openTab(0)"><i class="icons">&#xe2b3;</i><p class="tab-label">颜色</p></button>
+	<button class="tablinks" onclick="openTab(1)"><i class="icons">&#xe23d;</i><p class="tab-label">效果</p></button>
+	<button class="tablinks" onclick="openTab(2)"><i class="icons">&#xe34b;</i><p class="tab-label">分块</p></button>
+	<button class="tablinks" onclick="openTab(3)"><i class="icons">&#xe04c;</i><p class="tab-label">预设</p></button>
 </div>
 
 <div id="connind"></div>
@@ -373,15 +373,15 @@
 
 <div id="nodes" class="modal">
 	<button class="btn btn-xs close" onclick="toggleNodes()"><i class="icons rot45">&#xe18a;</i></button>
-	<div id="ndlt">WLED instances</div>
-	<div id="kn">Loading...</div>
+	<div id="ndlt">WLED 实例</div>
+	<div id="kn">加载中...</div>
 	<div style="position:sticky;bottom:0;">
-		<button class="btn infobtn" onclick="loadNodes()">Refresh</button>
+		<button class="btn infobtn" onclick="loadNodes()">刷新</button>
 	</div>	
 </div>
 
 <div id="mlv2D" class="modal">
-	<div id="klv2D" style="width:100%; height:100%">Loading...</div>
+	<div id="klv2D" style="width:100%; height:100%">加载中...</div>
 </div>
 
 <div id="rover" class="modal">
