@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-	<title>2D Set-up</title>
+	<title>2D 设置</title>
 	<script>
 	var d=document;
 	var loc = false, locip, locproto = "http:";
@@ -309,52 +309,52 @@ Y:<input name="P${i}Y" type="number" min="0" max="255" value="0" oninput="UI()">
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
 		<button type="button" onclick="B()">Back</button><button type="button" onclick="fS()">Save</button><hr>
 	</div>
-	<h2>2D setup</h2>
-	Strip or panel:
+	<h2>2D 设置</h2>
+	灯条或者灯板:
 	<select id="somp" name="SOMP" onchange="resetPanels();addPanels();UI();" >
-		<option value="0">1D Strip</option>
-		<option value="1">2D Matrix</option>
+		<option value="0">1D 灯条</option>
+		<option value="1">2D 灯板</option>
 	</select><br>
 	<div id="mpdiv" style="display:none;">
 		<hr class="sml">
-		<h3>Matrix Generator <button type="button" id="expGen" onclick="expand(this,gId('mxGen'));">&gt;</button></h3>
+		<h3>矩阵 生成器 <button type="button" id="expGen" onclick="expand(this,gId('mxGen'));">&gt;</button></h3>
 		<div id="mxGen" style="display:none;">
-			Panel dimensions (WxH): <input name="PW" type="number" min="1" max="128" value="8"> x <input name="PH" type="number" min="1" max="128" value="8"><br>
-			Horizontal panels: <input name="MPH" type="number" min="1" max="8" value="1">
-			Vertical panels: <input name="MPV" type="number" min="1" max="8" value="1"><br>
-			1<sup>st</sup> panel: <select name="PB">
-				<option value="0">Top</option>
-				<option value="1">Bottom</option>
+			灯板尺寸 (宽x高): <input name="PW" type="number" min="1" max="128" value="8"> x <input name="PH" type="number" min="1" max="128" value="8"><br>
+			横向 面板: <input name="MPH" type="number" min="1" max="8" value="1">
+			垂直 面板: <input name="MPV" type="number" min="1" max="8" value="1"><br>
+			1<sup>st</sup> 面板: <select name="PB">
+				<option value="0">顶</option>
+				<option value="1">底</option>
 			</select><select name="PR">
-				<option value="0">Left</option>
-				<option value="1">Right</option>
+				<option value="0">左</option>
+				<option value="1">右</option>
 			</select><br>
-			Orientation: <select name="PV">
-				<option value="0">Horizontal</option>
-				<option value="1">Vertical</option>
+			方向: <select name="PV">
+				<option value="0">横向</option>
+				<option value="1">垂直</option>
 			</select><br>
 			Serpentine: <input type="checkbox" name="PS"><br>
-			<i  class="warn">Pressing Populate will create LED panel layout with pre-arranged matrix.<br>Values above <i>will not</i> affect final layout.<br>
-				WARNING: You may need to update each panel parameters after they are generated.</i><br>
-			<button type="button" onclick="gen();expand(gId('expGen'),gId('mxGen'));">Populate</button>
+			<i  class="warn">按“填充”将创建具有预先排列矩阵的 LED 面板布局.<br>值高于<i>不会</i> 影响最终布局.<br>
+			生成矩阵后需要更新面板的参数.</i><br>
+			<button type="button" onclick="gen();expand(gId('expGen'),gId('mxGen'));">填充</button>
 		</div>
 		<hr class="sml">
-		<h3>Panel set-up</h3>
-		Number of panels: <input name="MPC" type="number" min="1" max="64" value="1" oninput="addPanels();UI();"><br>
-		<i>A matrix is made of 1 or more physical LED panels.<br>
-		Each panel can be of different size and/or have different LED orientation and/or starting point and/or layout.</i><br>
-		<h3>LED panel layout</h3>
+		<h3>面板设置</h3>
+		面板数量: <input name="MPC" type="number" min="1" max="64" value="1" oninput="addPanels();UI();"><br>
+		<i>一个矩阵可以由一个或多个物理LED面板组成.<br>
+		每个面板可以有不同的大小/方向/起始点/布局.</i><br>
+		<h3>LED面板布局</h3>
 		<div id="panels">
 		</div>
 		<hr class="sml">
 		<div id="MD"></div>
 		<canvas id="canvas"></canvas>
-		<div id="json" >Gap file: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/2d-gaps.json')">Upload</button></div>
+		<div id="json" >Gap file: <input type="file" name="data" accept=".json"><button type="button" class="sml" onclick="uploadFile('/2d-gaps.json')">上传</button></div>
 		<i>Note: Gap file is a <b>.json</b> file containing an array with number of elements equal to the matrix size.<br>
 			A value of -1 means that pixel at that position is missing, a value of 0 means never paint that pixel, and 1 means regular pixel.</i>
 	</div>
 	<hr>
-	<button type="button" onclick="B()">Back</button><button type="button" onclick="fS()">Save</button>
+	<button type="button" onclick="B()">返回</button><button type="button" onclick="fS()">Save</button>
 	</form>
 	<div id="toast"></div>
 </body>

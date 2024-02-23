@@ -16,7 +16,7 @@
 		function N() {
 			const button = gId("scan");
 			button.disabled = true;
-			button.textContent = "Scanning...";
+			button.textContent = "扫描中...";
 
 			fetch(getURL("/json/net")).then((response) => {
 				return response.json();
@@ -78,14 +78,14 @@
 					const option = cE("option");
 
 					option.setAttribute("value", "!Cs");
-					option.textContent = `Other network...`;
+					option.textContent = `其他网络...`;
 					select.appendChild(option);
 
 					cs.replaceWith(select);
 				}
 
 				button.disabled = false;
-				button.textContent = "Scan";
+				button.textContent = "扫描";
 			});
 		}
 		// replace WiFi select with custom SSID input field again
@@ -114,7 +114,7 @@
 			});
 			// error event
 			scE.addEventListener("error", (ev) => {
-				console.log("Error on loading file", ev);
+				console.log("加载文件错误", ev);
 				alert("Loading of configuration script failed.\nIncomplete page data!");
 			});
 		}
@@ -150,58 +150,58 @@
 	<form id="form_s" name="Sf" method="post">
 		<div class="toprow">
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
-		<button type="button" onclick="B()">Back</button><button type="submit">Save & Connect</button><hr>
+		<button type="button" onclick="B()">返回</button><button type="submit">保存并连接</button><hr>
 		</div>
-		<h2>WiFi setup</h2>
-		<h3>Connect to existing network</h3>
+		<h2>WiFi 设置</h2>
+		<h3>连接到已有网络</h3>
 		<button type="button" id="scan" onclick="N()">Scan</button><br>
-		Network name (SSID, empty to not connect):<br>
+		网络名称 (SSID, 留空则不连接):<br>
 		<input type="text" id="CS" name="CS" maxlength="32"><br>
-		Network password: <br> <input type="password" name="CP" maxlength="63"><br>
-		Static IP (leave at 0.0.0.0 for DHCP):<br>
+		网络密码: <br> <input type="password" name="CP" maxlength="63"><br>
+		静态 IP ( 留为 0.0.0.0 如果使用 DHCP):<br>
 		<input name="I0" type="number" class="s" min="0" max="255" required> .
 		<input name="I1" type="number" class="s" min="0" max="255" required> .
 		<input name="I2" type="number" class="s" min="0" max="255" required> .
 		<input name="I3" type="number" class="s" min="0" max="255" required><br>
-		Static gateway:<br>
+		静态网关:<br>
 		<input name="G0" type="number" class="s" min="0" max="255" required> .
 		<input name="G1" type="number" class="s" min="0" max="255" required> .
 		<input name="G2" type="number" class="s" min="0" max="255" required> .
 		<input name="G3" type="number" class="s" min="0" max="255" required><br>
-		Static subnet mask:<br>
+		静态子网掩码:<br>
 		<input name="S0" type="number" class="s" min="0" max="255" required> .
 		<input name="S1" type="number" class="s" min="0" max="255" required> .
 		<input name="S2" type="number" class="s" min="0" max="255" required> .
 		<input name="S3" type="number" class="s" min="0" max="255" required><br>
-		mDNS address (leave empty for no mDNS):<br>
+		mDNS 地址 (留空如果没有 mDNS):<br>
 		http:// <input type="text" name="CM" maxlength="32"> .local<br>
-		Client IP: <span class="sip"> Not connected </span> <br>
-		<h3>Configure Access Point</h3>
-		AP SSID (leave empty for no AP):<br> <input type="text" name="AS" maxlength="32"><br>
-		Hide AP name: <input type="checkbox" name="AH"><br>
-		AP password (leave empty for open):<br> <input type="password" name="AP" maxlength="63" pattern="(.{8,63})|()" title="Empty or min. 8 characters"><br>
-		Access Point WiFi channel: <input name="AC" type="number" class="xs" min="1" max="13" required><br>
-		AP opens:
+		客户端 IP: <span class="sip"> 未连接 </span> <br>
+		<h3>配置AP</h3>
+		AP SSID (留空如果不使用 AP):<br> <input type="text" name="AS" maxlength="32"><br>
+		隐藏 AP 名字: <input type="checkbox" name="AH"><br>
+		AP 密码 (留空使用开放 AP):<br> <input type="password" name="AP" maxlength="63" pattern="(.{8,63})|()" title="Empty or min. 8 characters"><br>
+		AP WiFi 信道: <input name="AC" type="number" class="xs" min="1" max="13" required><br>
+		AP 开启选项:
 		<select name="AB">
-		<option value="0">No connection after boot</option>
-		<option value="1">Disconnected</option>
-		<option value="2">Always</option>
-		<option value="3">Never (not recommended)</option></select><br>
-		AP IP: <span class="sip"> Not active </span><br>
-		<h3>Experimental</h3>
-		Force 802.11g mode (ESP8266 only): <input type="checkbox" name="FG"><br>
-		Disable WiFi sleep: <input type="checkbox" name="WS"><br>
-		<i>Can help with connectivity issues.<br>
-		Do not enable if WiFi is working correctly, increases power consumption.</i>
+		<option value="0">启动后没有连接到网络</option>
+		<option value="1">网络连接断开</option>
+		<option value="2">总是</option>
+		<option value="3">从不 (不推荐)</option></select><br>
+		AP IP: <span class="sip"> 未启动 </span><br>
+		<h3>实验性</h3>
+		强制 802.11g 模式 (仅限ESP8266): <input type="checkbox" name="FG"><br>
+		关闭 WiFi 休眠: <input type="checkbox" name="WS"><br>
+		<i>可以修复连接问题.<br>
+		WiFi正常情况下请勿开启, 会增加功耗.</i>
 
 		<div id="remd">
-			<h3>Wireless Remote</h3>
-			<i>Listen for events over ESP-NOW<br>
-			Keep disabled if not using a remote, increases power consumption.<br></i>
+			<h3>远程无线</h3>
+			<i>监听ESP-NOW事件<br>
+			不使用远程无线请勿开启, 会增加功耗.<br></i>
 		
-			Enable Remote: <input type="checkbox" name="RE"><br>
-			Hardware MAC: <input type="text" name="RMAC"><br>
-			Last Seen: <span class="rlid">None</span> <br>
+			开启远程无线: <input type="checkbox" name="RE"><br>
+			硬件 MAC: <input type="text" name="RMAC"><br>
+			Last Seen: <span class="rlid">无</span> <br>
 		</div>
 
 		<div id="ethd">
@@ -221,7 +221,7 @@
 			</select><br><br>
 		</div>
 		<hr>
-		<button type="button" onclick="B()">Back</button><button type="submit">Save & Connect</button>
+		<button type="button" onclick="B()">返回</button><button type="submit">保存并连接</button>
 	</form>
 </body>
 </html>

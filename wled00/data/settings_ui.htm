@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-	<title>UI Settings</title>
+	<title>UI 设置</title>
 	<script>
 	var d = document;
 	var loc = false, locip, locproto = "http:";
@@ -11,35 +11,35 @@
 	var sett = null;
 	var l = {
 		"comp":{
-			"labels":"Show button labels",
+			"labels":"显示按钮标签",
 			"colors":{
-				"LABEL":"Color selection methods",
-				"picker": "Color Wheel",
-				"rgb": "RGB sliders",
-				"quick": "Quick color selectors",
-				"hex": "HEX color input"
+				"LABEL":"颜色选择方法",
+				"picker": "色轮",
+				"rgb": "RGB 滑块",
+				"quick": "快速选择",
+				"hex": "HEX颜色输入"
 				},
-			"pcmbot": "Show bottom tab bar in PC mode",
-			"pid": "Show preset IDs",
-			"seglen": "Set segment length instead of stop LED",
-			"segpwr": "Hide segment power &amp; brightness",
-			"segexp" : "Always expand first segment",
-			"css": "Enable custom CSS",
+			"pcmbot": "电脑模式下显示底部标签栏",
+			"pid": "显示预设ID",
+			"seglen": "设置分块长度而不是停止位LED",
+			"segpwr": "隐藏分块&amp;亮度",
+			"segexp" : "总是展开第一个分块",
+			"css": "启用自定义CSS",
 			"hdays": "Enable custom Holidays list",
-			"fxdef": "Use effect default parameters",
-			"idsort": "Sort presets by ID"
+			"fxdef": "使用效果默认参数",
+			"idsort": "按 ID 对预设进行排序"
 		},
 		"theme":{
 			"alpha": {
-				"bg":"Background opacity",
-				"tab":"Button opacity"
+				"bg":"背景透明度",
+				"tab":"按钮透明度"
 			},
 			"bg":{
-				"url":"BG image URL",
-				"random":"Random BG image"
+				"url":"背景图片URL",
+				"random":"随机背景图片"
 			},
 			"color":{
-				"bg":"BG HEX color"
+				"bg":"背景HEX颜色"
 			}
 		}
 	};
@@ -126,7 +126,7 @@
 		} catch (e) {
 			sett = {};
 			gId('lserr').style.display = "inline";
-			gId('lserr').innerHTML = "&#9888; Settings JSON parsing failed. (" + e + ")";
+			gId('lserr').innerHTML = "&#9888; 设置 JSON 解析失败. (" + e + ")";
 		}
 		genForm(sett);
 		gId('dm').checked = (gId('theme_base').value === 'light');
@@ -147,7 +147,7 @@
 		} catch (e) {
 			gId('lssuc').style.display = "none";
 			gId('lserr').style.display = "inline";
-			gId('lserr').innerHTML = "&#9888; Settings JSON saving failed. (" + e + ")";
+			gId('lserr').innerHTML = "&#9888; 设置 JSON 保存失败. (" + e + ")";
 		}
 	}
 
@@ -182,8 +182,8 @@
 		});
 		// error event
 		scE.addEventListener("error", (ev) => {
-			console.log("Error on loading file", ev);
-			alert("Loading of configuration script failed.\nIncomplete page data!");
+			console.log("加载文件时出错", ev);
+			alert("配置脚本加载失败.\n页数据不完整!");
 		});
 	}
 	function S() {
@@ -254,24 +254,24 @@
 	<form id="form_s" name="Sf" method="post">
 		<div class="toprow">
 		<div class="helpB"><button type="button" onclick="H()">?</button></div>
-		<button type="button" onclick="B()">Back</button><button type="button" onclick="Save()">Save</button><br>
-		<span id="lssuc" style="color:green; display:none">&#10004; Local UI settings saved!</span>
-		<span id="lserr" style="color:red; display:none">&#9888; Could not access local storage. Make sure it is enabled in your browser.</span><hr>
+		<button type="button" onclick="B()">返回</button><button type="button" onclick="Save()">保存</button><br>
+		<span id="lssuc" style="color:green; display:none">&#10004; 已保存本地 UI 设置!</span>
+		<span id="lserr" style="color:red; display:none">&#9888; 无法访问本地存储。 确保您的浏览器中已启用它.</span><hr>
 		</div>
 		<h2>Web Setup</h2>
-		Server description: <input type="text" name="DS" maxlength="32"><br>
-		Sync button toggles both send and receive: <input type="checkbox" name="ST"><br>
+		服务器描述: <input type="text" name="DS" maxlength="32"><br>
+		同步按钮将会同时开关发送和接收: <input type="checkbox" name="ST"><br>
 		<div id="NoSimple" class="hide">
-			<i class="warn">This firmware build does not include simplified UI support.<br></i>
+			<i class="warn">此固件版本不包括简化UI支持.<br></i>
 		</div>
-		<div id="Simple">Enable simplified UI: <input type="checkbox" name="SU"><br></div>
-		<i>The following UI customization settings are unique both to the WLED device and this browser.<br>
-		You will need to set them again if using a different browser, device or WLED IP address.<br>
-		Refresh the main UI to apply changes.</i><br>
+		<div id="Simple">启用简化UI: <input type="checkbox" name="SU"><br></div>
+		<i>以下UI自定义设置对于WLED设备和此浏览器来说都是唯一的.<br>
+		如果使用不同的浏览器、设备或WLED IP地址，将需要重新设置它们.<br>
+		刷新主UI以应用更改.</i><br>
 		
-		<div id="gen">Loading settings...</div>
+		<div id="gen">加载配置...</div>
 		
-		<h3>UI Appearance</h3>
+		<h3>UI 外观</h3>
 		<span class="l"></span>: <input type="checkbox" id="comp_labels" class="agi cb"><br>
 		<span class="l"></span>: <input type="checkbox" id="comp_pcmbot" class="agi cb"><br>
 		<span class="l"></span>: <input type="checkbox" id="comp_pid" class="agi cb"><br>
@@ -280,21 +280,21 @@
 		<span class="l"></span>: <input type="checkbox" id="comp_segexp" class="agi cb"><br>
 		<span class="l"></span>: <input type="checkbox" id="comp_fxdef" class="agi cb"><br>
 		<span class="l"></span>: <input type="checkbox" id="comp_idsort" class="agi cb"><br>
-		I hate dark mode: <input type="checkbox" id="dm" onchange="UI()"><br>
-		<span id="idonthateyou" style="display:none"><i>Why would you? </i>&#x1F97A;<br></span>
+		我恨黑色模式: <input type="checkbox" id="dm" onchange="UI()"><br>
+		<span id="idonthateyou" style="display:none"><i>真的吗?</i>&#x1F97A;<br></span>
 		<span class="l"></span>: <input type="number" min=0.0 max=1.0 step=0.01 id="theme_alpha_tab" class="agi"><br>
 		<span class="l"></span>: <input type="number" min=0.0 max=1.0 step=0.01 id="theme_alpha_bg" class="agi"><br>
 		<span class="l"></span>: <input type="text" id="theme_color_bg" maxlength="9" class="agi"><br>
-		<span class="l">BG image URL</span>: <input type="text" id="theme_bg_url" class="agi" oninput="checkRandomBg()"><br>
-		<span class="l">Random BG image</span>: <input type="checkbox" id="theme_bg_random" class="agi cb" onchange="setRandomBg()"><br>
+		<span class="l">背景图片 URL</span>: <input type="text" id="theme_bg_url" class="agi" oninput="checkRandomBg()"><br>
+		<span class="l">随机背景图片</span>: <input type="checkbox" id="theme_bg_random" class="agi cb" onchange="setRandomBg()"><br>
 		<input id="theme_base" class="agi" style="display:none">
 		<span class="l"></span>: <input type="checkbox" id="comp_css" class="agi cb"><br>
-		<div id="skin">Custom CSS: <input type="file" name="data" accept=".css"> <input type="button" value="Upload" onclick="uploadFile(d.Sf.data,'/skin.css');"><br></div>
+		<div id="skin">自定义 CSS: <input type="file" name="data" accept=".css"> <input type="button" value="上传" onclick="uploadFile(d.Sf.data,'/skin.css');"><br></div>
 		<span class="l"></span>: <input type="checkbox" id="comp_hdays" class="agi cb"><br>
-		<div id="holidays">Holidays: <input type="file" name="data2" accept=".json"> <input type="button" value="Upload" onclick="uploadFile(d.Sf.data2,'/holidays.json');"><br></div>
+		<div id="holidays">Holidays: <input type="file" name="data2" accept=".json"> <input type="button" value="上传" onclick="uploadFile(d.Sf.data2,'/holidays.json');"><br></div>
 		<div id="toast"></div>
-		<hr><button type="button" onclick="cLS()">Clear local storage</button>
-		<hr><button type="button" onclick="B()">Back</button><button type="button" onclick="Save()">Save</button>
+		<hr><button type="button" onclick="cLS()">清理本地存储</button>
+		<hr><button type="button" onclick="B()">返回</button><button type="button" onclick="Save()">保存</button>
 	</form>
 </body>
 </html>

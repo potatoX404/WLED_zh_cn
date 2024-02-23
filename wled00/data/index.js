@@ -319,7 +319,7 @@ function showToast(text, error = false)
 
 function showErrorToast()
 {
-	showToast('Connection to light failed!', true);
+	showToast('连接到灯光失败!', true);
 }
 
 function clearErrorToast(n=5000)
@@ -405,7 +405,7 @@ function cpBck()
 	copyText.select();
 	copyText.setSelectionRange(0, 999999);
 	d.execCommand("copy");
-	showToast("Copied to clipboard!");
+	showToast("复制到剪切板!");
 }
 
 function presetError(empty)
@@ -418,17 +418,17 @@ function presetError(empty)
 
 	var cn = `<div class="pres c" ${empty?'style="padding:8px;margin-top: 16px;"':'onclick="pmtLast=0;loadPresets();" style="cursor:pointer;padding:8px;margin-top: 16px;"'}>`;
 	if (empty)
-		cn += `You have no presets yet!`;
+		cn += `没有预设!`;
 	else
-		cn += `Sorry, there was an issue loading your presets!`;
+		cn += `抱歉，加载预设失败!`;
 
 	if (hasBackup) {
 		cn += `<br><br>`;
 		if (empty)
-			cn += `However, there is backup preset data of a previous installation available.<br>
-			(Saving a preset will hide this and overwrite the backup)`;
+			cn += `但是，有先前安装的备份预设数据可用.<br>
+			(保存预设将隐藏该预设并覆盖备份)`;
 		else
-			cn += `Here is a backup of the last known good state:`;
+			cn += `这是最后一个已知良好状态的备份:`;
 		cn += `<textarea id="bck"></textarea><br>
 			<button class="btn" onclick="cpBck()">Copy to clipboard</button>`;
 	}
@@ -680,16 +680,16 @@ ${urows}
 ${urows===""?'':'<tr><td colspan=2><hr style="height:1px;border-width:0;color:gray;background-color:gray"></td></tr>'}
 ${i.opt&0x100?inforow("Debug","<button class=\"btn btn-xs\" onclick=\"requestJson({'debug':"+(i.opt&0x0080?"false":"true")+"});\"><i class=\"icons "+(i.opt&0x0080?"on":"off")+"\">&#xe08f;</i></button>"):''}
 ${inforow("Build",i.vid)}
-${inforow("Signal strength",i.wifi.signal +"% ("+ i.wifi.rssi, " dBm)")}
-${inforow("Uptime",getRuntimeStr(i.uptime))}
-${inforow("Time",i.time)}
+${inforow("信号强度",i.wifi.signal +"% ("+ i.wifi.rssi, " dBm)")}
+${inforow("在线时间",getRuntimeStr(i.uptime))}
+${inforow("系统时间",i.time)}
 ${inforow("Free heap",heap," kB")}
 ${i.psram?inforow("Free PSRAM",(i.psram/1024).toFixed(1)," kB"):""}
-${inforow("Estimated current",pwru)}
-${inforow("Average FPS",i.leds.fps)}
-${inforow("MAC address",i.mac)}
-${inforow("Filesystem",i.fs.u + "/" + i.fs.t + " kB (" +Math.round(i.fs.u*100/i.fs.t) + "%)")}
-${inforow("Environment",i.arch + " " + i.core + " (" + i.lwip + ")")}
+${inforow("预估电流",pwru)}
+${inforow("平均 FPS",i.leds.fps)}
+${inforow("MAC 地址",i.mac)}
+${inforow("文件系统",i.fs.u + "/" + i.fs.t + " kB (" +Math.round(i.fs.u*100/i.fs.t) + "%)")}
+${inforow("环境",i.arch + " " + i.core + " (" + i.lwip + ")")}
 </table>`;
 	gId('kv').innerHTML = cn;
 	//  update all sliders in Info
@@ -1041,10 +1041,10 @@ function populateNodes(i,n)
 			}
 		}
 	}
-	if (i.ndc < 0) cn += `Instance List is disabled.`;
-	else if (nnodes == 0) cn += `No other instances found.`;
+	if (i.ndc < 0) cn += `实例表列不可用.`;
+	else if (nnodes == 0) cn += `没发现其他实例.`;
 	cn += `<table>
-	${inforow("Current instance:",i.name)}
+	${inforow("当前实例:",i.name)}
 	${urows}
 	</table>`;
 	gId('kn').innerHTML = cn;
@@ -1056,7 +1056,7 @@ function loadNodes()
 		method: 'get'
 	})
 	.then((res)=>{
-		if (!res.ok) showToast('Could not load Node list!', true);
+		if (!res.ok) showToast('无法加载节点表列!', true);
 		return res.json();
 	})
 	.then((json)=>{
@@ -1396,7 +1396,7 @@ function readState(s,command=false)
 		hasCCT   = !!(lc & 0x04);
 	}
 	if (!i) {
-		showToast('No Segments!', true);
+		showToast('没有分块!', true);
 		updateUI();
 		return true;
 	}
@@ -1427,19 +1427,19 @@ function readState(s,command=false)
 	  var errstr = "";
 	  switch (s.error) {
 		case 10:
-		  errstr = "Could not mount filesystem!";
+		  errstr = "无法加载文件系统!";
 		  break;
 		case 11:
-		  errstr = "Not enough space to save preset!";
+		  errstr = "没有足够空间保存预设!";
 		  break;
 		case 12:
-		  errstr = "Preset not found.";
+		  errstr = "预设未找到.";
 		  break;
 		case 13:
-		  errstr = "Missing ir.json.";
+		  errstr = "缺失 ir.json.";
 		  break;
 		case 19:
-		  errstr = "A filesystem error has occured.";
+		  errstr = "发生了文件系统错误.";
 		  break;
 		}
 	  showToast('Error ' + s.error + ": " + errstr, true);
@@ -1676,9 +1676,9 @@ function toggleNl()
 	nlA = !nlA;
 	if (nlA)
 	{
-		showToast(`Timer active. Your light will turn ${nlTar > 0 ? "on":"off"} ${nlMode ? "over":"after"} ${nlDur} minutes.`);
+		showToast(`定时开启,${nlMode ? "超过":"经过"}${nlDur}分钟后灯光将会${nlTar > 0 ? "开启":"关闭"}.`);
 	} else {
-		showToast('Timer deactivated.');
+		showToast('定时关闭.');
 	}
 	var obj = {"nl": {"on": nlA}};
 	requestJson(obj);
@@ -1687,8 +1687,8 @@ function toggleNl()
 function toggleSync()
 {
 	syncSend = !syncSend;
-	if (syncSend) showToast('Other lights in the network will now sync to this one.');
-	else showToast('This light and other lights in the network will no longer sync.');
+	if (syncSend) showToast('网络中的其他LED将和此LED同步');
+	else showToast('网络中的其他LED不再和此LED同步.');
 	var obj = {"udpn": {"send": syncSend}};
 	if (syncTglRecv) obj.udpn.recv = syncSend;
 	requestJson(obj);

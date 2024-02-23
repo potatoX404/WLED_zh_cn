@@ -208,7 +208,7 @@
 
 	<div id="Effects" class="tabcontent">
 		<div id="fx">
-			<p class="labels hd" id="modeLabel">Effect mode</p>
+			<p class="labels hd" id="modeLabel">效果模式</p>
 			<div class="staytop fnd" id="fxFind">
 				<input type="text" placeholder="Search" oninput="search(this,'fxlist')" onfocus="search(this,'fxlist');gId('filters').classList.add('fade');" onblur="gId('filters').classList.remove('fade')"/>
 				<i class="icons clear-icon" onclick="clean(this);">&#xe38f;</i>
@@ -260,7 +260,7 @@
 					<div class="sliderdisplay"></div>
 				</div>
 				<output class="sliderbubble"></output>
-				<span id="sliderLabel0" class="tooltiptext">Effect speed</span>
+				<span id="sliderLabel0" class="tooltiptext">效果速度</span>
 			</div>
 			<div id="slider1" class="slider">
 				<i class="icons slider-icon" onclick="tglLabels()">&#xe409;</i>
@@ -269,7 +269,7 @@
 					<div class="sliderdisplay"></div>
 				</div>
 				<output class="sliderbubble"></output>
-				<span class="tooltiptext" id="sliderLabel1">Effect intensity</span>
+				<span class="tooltiptext" id="sliderLabel1">效果强度</span>
 			</div>
 			<div id="slider2" class="slider hide">
 				<i class="icons slider-icon">&#xe410;</i>
@@ -278,7 +278,7 @@
 					<div class="sliderdisplay"></div>
 				</div>
 				<output class="sliderbubble"></output>
-				<span class="tooltiptext" id="sliderLabel2">Custom 1</span>
+				<span class="tooltiptext" id="sliderLabel2">自定义 1</span>
 			</div>
 			<div id="slider3" class="slider hide">
 				<i class="icons slider-icon">&#xe0a2;</i>
@@ -287,7 +287,7 @@
 					<div class="sliderdisplay"></div>
 				</div>
 				<output class="sliderbubble"></output>
-				<span class="tooltiptext" id="sliderLabel3">Custom 2</span>
+				<span class="tooltiptext" id="sliderLabel3">自定义 2</span>
 			</div>
 			<div id="slider4" class="slider hide">
 				<i class="icons slider-icon">&#xe0e8;</i>
@@ -296,18 +296,18 @@
 					<div class="sliderdisplay"></div>
 				</div>
 				<output class="sliderbubble"></output>
-				<span class="tooltiptext" id="sliderLabel4">Custom 3</span>
+				<span class="tooltiptext" id="sliderLabel4">自定义 3</span>
 			</div>
 			<div id="fxopt" class="option fade">
-				<label id="opt0" class="check ochkl hide"><i class="icons">&#xe2b3;</i><span class="tooltiptext" id="optLabel0">Check 1</span>
+				<label id="opt0" class="check ochkl hide"><i class="icons">&#xe2b3;</i><span class="tooltiptext" id="optLabel0">检查  1</span>
 					<input id="checkO1" type="checkbox" onchange="setOption(1, this.checked)">
 					<span class="checkmark"></span>
 				</label>
-				<label id="opt1" class="check ochkl hide"><i class="icons">&#xe34b;</i><span class="tooltiptext" id="optLabel1">Check 2</span>
+				<label id="opt1" class="check ochkl hide"><i class="icons">&#xe34b;</i><span class="tooltiptext" id="optLabel1">检查 2</span>
 					<input id="checkO2" type="checkbox" onchange="setOption(2, this.checked)">
 					<span class="checkmark"></span>
 				</label>
-				<label id="opt2" class="check ochkl hide"><i class="icons">&#xe04c;</i><span class="tooltiptext" id="optLabel2">Check 3</span>
+				<label id="opt2" class="check ochkl hide"><i class="icons">&#xe04c;</i><span class="tooltiptext" id="optLabel2">检查 3</span>
 					<input id="checkO3" type="checkbox" onchange="setOption(3, this.checked)">
 					<span class="checkmark"></span>
 				</label>
@@ -322,7 +322,7 @@
 		<div id="segutil" class="staybot">
 		</div>
 		<div id="segutil2">
-			<button class="btn btn-s" id="rsbtn" onclick="rSegs()">Reset segments</button>
+			<button class="btn btn-s" id="rsbtn" onclick="rSegs()">重置 分块</button>
 		</div>
 		<p>Transition: <input id="tt" type="number" min="0" max="65.5" step="0.1" value="0.7">&nbsp;s</p>
 		<p id="ledmap" class="hide"></p>
@@ -360,12 +360,12 @@
 	<div id="imgw">
 		<img class="wi" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAFCAYAAAC5Fuf5AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABbSURBVChTlY9bDoAwDMNW7n9nwCipytQN4Z8tbrTHmDmF4oPzyldwRqp1SSdnV/NuZuzqerAByxXznBw3igkeFEfXyUuhK/yFM0CxJfyqXZEOc6/Sr9/bf7uIC5Nwd7orMvAPAAAAAElFTkSuQmCC" />
 	</div>
-	<div id="kv">Loading...</div><br>
+	<div id="kv">加载中...</div><br>
 	<div>
-		<button class="btn infobtn" onclick="requestJson()">Refresh</button>
-		<button class="btn infobtn" onclick="toggleNodes()">Instance List</button>
-		<button class="btn infobtn" onclick="window.open(getURL('/update'),'_self');">Update WLED</button>
-		<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">Reboot WLED</button>
+		<button class="btn infobtn" onclick="requestJson()">刷新</button>
+		<button class="btn infobtn" onclick="toggleNodes()">实例表列</button>
+		<button class="btn infobtn" onclick="window.open(getURL('/update'),'_self');">更新 WLED</button>
+		<button class="btn infobtn" id="resetbtn" onclick="cnfReset()">重启 WLED</button>
 	</div>
 	<br>
 	<span class="h">Made with <span id="heart">&#10084;&#xFE0E;</span> by Aircoookie and the <a href="https://wled.discourse.group/" target="_blank">WLED community</a></span>
@@ -387,11 +387,11 @@
 <div id="rover" class="modal">
 	<i class="icons huge">&#xe410;</i><br>
 	<div id="lv">?</div><br><br>
-	To use built-in effects, use an override button below.<br>
-	You can return to realtime mode by pressing the star in the top left corner.<br>
-	<button class="btn" onclick="setLor(1)">Override once</button>
-	<button class="btn" onclick="setLor(2)">Override until reboot</button><br>
-	<span class="h">For best performance, it is recommended to turn off the streaming source when not in use.</span>
+	为了使用内置效果, 使用下方的覆盖按钮.<br>
+	按下左上方星形按钮可以返回实时模式.<br>
+	<button class="btn" onclick="setLor(1)">覆盖一次</button>
+	<button class="btn" onclick="setLor(2)">覆盖直到重启</button><br>
+	<span class="h">为了最佳性能, 推荐在未使用时关闭推流源.</span>
 </div>
 
 <i id="roverstar" class="icons huge" onclick="setLor(0)">&#xe410;</i><br>
